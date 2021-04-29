@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Collection Form</title>
+    <link rel="stylesheet" href="../css/home.css">
+</head>
+
+<body>
+    <div id='header'>
+        <div>Data Collection Form
+</div>
+        <div>
+            <button onclick="window.location='./';">Profile </button>
+            <button onclick="window.location='../users/signup';">User Info</button>
+        </div>
+    </div>
+    <br>
+
+    <div id="formItems2">
+        <post id="posts"th:each="p : ${posts}">
+
+            <div>
+                <label>Name</label>
+                <h2 th:text="${p.name}"></h2>
+
+                <label>Age</label>
+                <h2 th:text="${p.age}">
+
+                <label>Email</label>
+                <h2 th:text="${p.email}">
+
+                <label>Address</label>
+                <h2 th:text="${p.address}">
+
+                <label>Phone number</label>
+                <h2 th:text="${p.pnum}">
+            </div>
+            <div>
+                <form th:action="@{/deletepost(postId=${p.id})}" th:method="delete">
+                    <h2 type="submit" value="DELETE" />
+                </form>
+            </div>
+        </post>
+    </div>
+</body>
+
+</html>
