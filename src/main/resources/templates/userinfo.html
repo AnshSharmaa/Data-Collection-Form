@@ -6,43 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Collection Form</title>
+
     <link rel="stylesheet" href="../css/home.css">
 </head>
 
 <body>
     <div id='header'>
         <div>Data Collection Form
-</div>
+        </div>
         <div>
-            <button onclick="window.location='./';">Profile </button>
-            <button onclick="window.location='../users/signup';">User Info</button>
+            <button onclick="window.location='/';">Profile </button>
+            <button onclick="window.location='/userinfo';">User Info</button>
         </div>
     </div>
     <br>
 
     <div id="formItems2">
-        <post id="posts"th:each="p : ${posts}">
+        <post id="posts" th:each="p : ${users}">
 
             <div>
                 <label>Name</label>
                 <h2 th:text="${p.name}"></h2>
 
                 <label>Age</label>
-                <h2 th:text="${p.age}">
+                <h2 th:text="${p.age}"></h2>
 
                 <label>Email</label>
-                <h2 th:text="${p.email}">
+                <h2 th:text="${p.email}"></h2>
 
                 <label>Address</label>
-                <h2 th:text="${p.address}">
+                <h2 th:text="${p.address}"></h2>
 
                 <label>Phone number</label>
-                <h2 th:text="${p.pnum}">
+                <h2 th:text="${p.phone}"></h2>
             </div>
             <div>
-                <form th:action="@{/deletepost(postId=${p.id})}" th:method="delete">
-                    <h2 type="submit" value="DELETE" />
+                <form th:action="@{/deleteuser(userId=${p.id})}" th:method="delete">
+                    <input type="submit" value="Delete" />
+                    <button type="button" data-bs-toggle="modal" th:data-bs-target="'#user'+${p.id}">Edit</button>
                 </form>
+
             </div>
         </post>
     </div>

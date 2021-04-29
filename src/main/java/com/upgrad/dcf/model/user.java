@@ -5,32 +5,28 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "userinfo")
-public class User {
+public class user {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name",unique = true)
+    @Column(name = "name" ,unique = true)
     private String name;
 
-    @Column(name = "age",unique = true)
+    @Column(name = "age")
     private String age;
 
-    @Column(name = "email",unique = true)
+    @Column(name = "email" ,unique = true)
     private String email;
 
     @Column(name = "address")
     private String address;
 
-    @Column(name = "pnum")
-    private String pnum;
+    @Column(name = "phone" ,unique = true)
+    private String phone;
 
-
-
-
-    // GETTERS AND SETTERS
     public Integer getId() {
         return id;
     }
@@ -72,11 +68,10 @@ public class User {
     }
 
     public String getPhone() {
-        return pnum;
+        return phone;
     }
 
-    public void setPhone(String pnum) {
-        this.pnum = pnum;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
-

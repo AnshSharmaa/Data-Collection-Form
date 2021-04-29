@@ -1,16 +1,16 @@
 package com.upgrad.dcf.repository;
 
-import com.upgrad.dcf.model.User;
+import com.upgrad.dcf.model.user;
 import org.springframework.stereotype.Repository;
 import javax.persistence.*;
 import java.util.List;
 
 @Repository
-public class UserRepo {
+public class userRepo {
 
     @PersistenceUnit
     private EntityManagerFactory entityManagerFactory;
-    public boolean addNewUser(User newUser) {
+    public boolean addNewUser(user newUser) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -25,10 +25,10 @@ public class UserRepo {
         }
     }
 
-    public List<User> getAllPosts() {
+    public List<user> getAllPosts() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        TypedQuery<User> query = entityManager.createQuery("SELECT u from user u",User.class);
-        List<User> result = query.getResultList();
+        TypedQuery<user> query = entityManager.createQuery("SELECT u from user u", user.class);
+        List<user> result = query.getResultList();
         return result;
     }
 
@@ -37,7 +37,7 @@ public class UserRepo {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
-            User user = entityManager.find(User.class, userId);
+            user user = entityManager.find(com.upgrad.dcf.model.user.class, userId);
             entityManager.remove(user);
             transaction.commit();
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class UserRepo {
     }
 
 
-    public void updateUser(User updateuser) {
+    public void updateUser(user updateuser) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -64,7 +64,7 @@ public class UserRepo {
     public boolean check(String userName) {
         try {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
-            TypedQuery<User> query = entityManager.createQuery( "select u from user u where Lower(u.name) = :userName",User.class);
+            TypedQuery<user> query = entityManager.createQuery( "select u from user u where Lower(u.name) = :userName", user.class);
             query.setParameter("userName", userName.toLowerCase());
             query.getSingleResult();
             return true;
@@ -72,13 +72,13 @@ public class UserRepo {
             return false;
         }
     }
-    public User getUser(String userName) {
+    public user getUser(String userName) {
         /*EntityManager entityManager = entityManagerFactory.createEntityManager();
         return entityManager.find(user.class,userName);*/
-        User found;
+        user found;
         try {
             EntityManager entityManager = entityManagerFactory.createEntityManager();
-            TypedQuery<User> query = entityManager.createQuery( "select u from user u where Lower(u.name) = :userName",User.class);
+            TypedQuery<user> query = entityManager.createQuery( "select u from user u where Lower(u.name) = :userName", user.class);
             query.setParameter("userName", userName.toLowerCase());
             found = query.getSingleResult();
         } catch (Exception e){
