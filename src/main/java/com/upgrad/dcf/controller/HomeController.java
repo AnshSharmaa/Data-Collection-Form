@@ -18,7 +18,7 @@ public class HomeController {
     @RequestMapping("/")
     public String home(Model model){
         model.addAttribute("user", new user());
-        return "home";
+        return "HEllo works";
     }
     @RequestMapping(method = RequestMethod.POST, value = "/adduser")
     public String userRegistration(user user, RedirectAttributes redirAttrs) {
